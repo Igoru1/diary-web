@@ -564,29 +564,42 @@
     display: none;
   }
 
-  .pages-area {
-    border-radius: 8px;
-    min-height: 0;
-    height: calc(100svh - 80px);
-  }
+.pages-area {
+  border-radius: 8px;
+  min-height: 0;
+  height: calc(100svh - 80px);
+}
 
-  .spread {
-    flex-direction: column;
-    position: relative;
-    height: 100%;
-  }
+.spread {
+  flex-direction: column;
+  position: relative;  /* sale del absolute */
+  height: 100%;
+  width: 100%;
+}
 
-  .spread .page {
-    display: none;
-    min-height: 0;
-    height: 100%;
-    padding: 28px 22px 36px;
-  }
+/* Ocultar todos los spreads que no son el activo */
+.spread:not(.active) {
+  display: none;
+}
 
-  .spread .page.mobile-active {
-    display: flex;
-  }
+/* El activo se muestra normal */
+.spread.active {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
 
+.spread .page {
+  display: none;
+  min-height: 0;
+  height: 100%;
+  padding: 28px 22px 36px;
+  flex: 1;
+}
+
+.spread .page.mobile-active {
+  display: flex;
+}
   .cover-spread .cover-page,
   .back-spread .back-cover-page,
   .back-spread .page {

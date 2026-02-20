@@ -1,0 +1,229 @@
+/* ============================================================
+   SPAGES.CSS — páginas especiales: portada y contraportada
+   ============================================================ */
+
+
+/* ── PORTADA ── */
+
+.cover-spread {
+  pointer-events: auto;
+}
+
+.cover-page {
+  flex: 1;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 120% 80% at 60% 30%, #c04828 0%, transparent 60%),
+    linear-gradient(160deg, #6b2008 0%, #9a3518 35%, #7a2d10 70%, #4a1508 100%);
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+  min-height: var(--page-height);
+  gap: 0;
+}
+
+/* Textura de grano sutil */
+.cover-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+/* Doble marco dorado */
+.cover-page::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(210,160,70,0.35);
+  border-radius: 2px;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 5px rgba(210,160,70,0.1);
+}
+
+.cover-ornament {
+  font-size: 2.4rem;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 3px 12px rgba(0,0,0,0.6));
+  position: relative;
+  z-index: 1;
+}
+
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  color: #f5dfa0;
+  text-align: center;
+  line-height: 1.25;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.6);
+  letter-spacing: 0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+.cover-divider {
+  width: 52px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(210,160,70,0.7), transparent);
+  margin: 20px 0 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.cover-subtitle {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: rgba(245,223,160,0.55);
+  text-align: center;
+  letter-spacing: 0.06em;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ── CONTRAPORTADA — página izquierda (cita) ── */
+
+.back-spread {
+  pointer-events: auto;
+}
+
+.back-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--faded);
+  line-height: 1.75;
+  max-width: 260px;
+  opacity: 0.85;
+}
+
+/* Comillas decorativas */
+.quote::before {
+  content: '"';
+  display: block;
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.2;
+  line-height: 0.8;
+  margin-bottom: 8px;
+  font-style: normal;
+}
+
+.written-love {
+  font-family: 'Caveat', cursive;
+  font-size: 0.95rem;
+  color: var(--faded);
+  opacity: 0.6;
+  letter-spacing: 0.04em;
+}
+
+
+/* ── CONTRAPORTADA — página derecha (tapa trasera) ── */
+
+.back-cover-page {
+  flex: 1;
+  height: 100%;
+  min-height: var(--page-height);
+  background:
+    radial-gradient(ellipse 120% 80% at 40% 70%, #c04828 0%, transparent 60%),
+    linear-gradient(160deg, #4a1508 0%, #7a2d10 35%, #9a3518 70%, #6b2008 100%);
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 36px;
+  position: relative;
+  overflow: hidden;
+  gap: 0;
+}
+
+.back-cover-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+.back-cover-page::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(210,160,70,0.3);
+  border-radius: 2px;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 5px rgba(210,160,70,0.08);
+}
+
+/* El título en la contraportada es más pequeño y apagado */
+.back-cover-title {
+  font-size: clamp(1.1rem, 2.8vw, 1.7rem) !important;
+  opacity: 0.65;
+}
+
+.fin-stamp {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(245,223,160,0.4);
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Ornamento y título también sobre el z-index */
+.back-cover-page .cover-ornament,
+.back-cover-page .cover-title,
+.back-cover-page .cover-divider,
+.back-cover-page .fin-stamp {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ── MÓVIL ── */
+
+@media (max-width: 600px) {
+
+  .cover-page,
+  .back-cover-page {
+    border-radius: 8px;
+    min-height: 0;
+    height: 100%;
+    padding: 40px 28px;
+  }
+
+  .cover-title {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+  }
+
+  .back-cover-page .quote {
+    font-size: 0.78rem;
+    max-width: 100%;
+  }
+}

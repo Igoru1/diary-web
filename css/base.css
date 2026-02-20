@@ -1,0 +1,70 @@
+/* ============================================================
+   BASE.CSS — reset, variables globales, body
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --paper:       #faf4e8;
+  --paper2:      #f3e9d6;
+  --ink:         #281808;
+  --faded:       #7a6050;
+  --accent:      #b85c38;
+  --gold:        #c9923a;
+  --spine:       #8b3a2a;
+  --bg:          #180d06;
+
+  /* Altura de página — referencia para zonas y min-height */
+  --page-height: 560px;
+
+  /* Padding interno de las páginas */
+  --page-pad-v:  36px;
+  --page-pad-h:  28px;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Lora', serif;
+  position: relative;
+}
+
+/* Fondo con viñeta radial */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 38%, #3a1b0a 0%, var(--bg) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Desktop: sin scroll, todo centrado */
+@media (min-width: 601px) {
+  html, body {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Móvil: permite scroll si el contenido no cabe */
+@media (max-width: 600px) {
+  body {
+    justify-content: flex-start;
+    padding: 20px 0 40px;
+    overflow-y: auto;
+  }
+}

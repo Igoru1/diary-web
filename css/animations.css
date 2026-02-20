@@ -1,0 +1,35 @@
+/* ============================================================
+   ANIMATIONS.CSS — transiciones al pasar páginas
+   ============================================================ */
+
+@keyframes turnRight {
+  0%   { opacity: 1; transform: rotateY(0deg)   translateX(0); }
+  50%  { opacity: 0; transform: rotateY(-12deg) translateX(-8px); }
+  100% { opacity: 0; transform: rotateY(0deg)   translateX(0); }
+}
+
+@keyframes turnLeft {
+  0%   { opacity: 0; transform: rotateY(12deg)  translateX(8px); }
+  60%  { opacity: 0; transform: rotateY(6deg)   translateX(4px); }
+  100% { opacity: 1; transform: rotateY(0deg)   translateX(0); }
+}
+
+.spread.exiting-left   { animation: turnRight 0.38s ease forwards; }
+.spread.entering-right { animation: turnLeft  0.38s ease forwards; }
+
+/* En móvil: transición más simple (deslizamiento) */
+@media (max-width: 600px) {
+
+  @keyframes slideOutLeft {
+    from { opacity: 1; transform: translateX(0); }
+    to   { opacity: 0; transform: translateX(-18px); }
+  }
+
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(18px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  .spread.exiting-left   { animation: slideOutLeft  0.28s ease forwards; }
+  .spread.entering-right { animation: slideInRight   0.28s ease forwards; }
+}

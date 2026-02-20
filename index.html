@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nuestra Historia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/book.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/spages.css">
+</head>
+<body>
+
+<div id="book-container">
+  <div id="book">
+    <div class="spine"></div>
+    <div class="pages-area" id="pages-area">
+
+
+      <!-- ═══════════════════════════════════════════
+           PORTADA
+      ═══════════════════════════════════════════ -->
+      <section class="spread cover-spread active"
+               data-spread="0" data-chapter="cover" data-label="Portada">
+
+        <div class="cover-page">
+          <div class="cover-ornament">🌹</div>
+          <div class="cover-title">Nuestra<br>Historia</div>
+          <div class="cover-divider"></div>
+          <div class="cover-subtitle">
+            El cuento de dos personas<br>que se encontraron
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           CAPÍTULO I — Antes de conocernos
+      ═══════════════════════════════════════════ -->
+      <section class="spread" data-spread="1" data-chapter="1" data-label="Cap. I">
+
+        <!-- Página izquierda: título + texto -->
+        <div class="page" data-page-side="left">
+          <div class="page-inner">
+            <span class="corner tl">❧</span>
+            <span class="corner bl">❧</span>
+
+            <div class="chapter">Capítulo I</div>
+            <div class="page-title">Antes de<br>conocernos…</div>
+            <div class="page-title-divider"></div>
+
+            <div class="zone zone-text zone-fill">
+              <textarea data-id="page-1a" class="auto-resize"
+                placeholder="Escribe aquí… cómo era tu vida antes de que todo cambiara."></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Página derecha: texto + zona imagen -->
+        <div class="page right" data-page-side="right">
+          <div class="page-inner">
+            <span class="corner tr">❧</span>
+            <span class="corner br">❧</span>
+
+            <div class="zone zone-text zone-top">
+              <textarea data-id="page-1b" class="auto-resize"
+                placeholder="…cómo era tu vida antes de que ella llegara."></textarea>
+            </div>
+
+            <div class="zone zone-image zone-bottom" data-zone-id="img-1b">
+              <div class="drawing-box" data-id="img-1b">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-1b">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos" data-pos="top" data-zone="img-1b">▲ arriba</button>
+              <button class="btn-zone-pos active" data-pos="bottom" data-zone="img-1b">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           CAPÍTULO II — El día que nos conocimos
+      ═══════════════════════════════════════════ -->
+      <section class="spread" data-spread="2" data-chapter="2" data-label="Cap. II">
+
+        <div class="page" data-page-side="left">
+          <div class="page-inner">
+            <span class="corner tl">❧</span>
+            <span class="corner bl">❧</span>
+
+            <div class="chapter">Capítulo II</div>
+            <div class="page-title">El día que<br>nos conocimos</div>
+            <div class="page-title-divider"></div>
+
+            <div class="zone zone-text zone-top">
+              <textarea data-id="page-2a" class="auto-resize"
+                placeholder="¿Dónde fue? ¿Qué pasó exactamente?…"></textarea>
+            </div>
+
+            <div class="zone zone-image zone-bottom" data-zone-id="img-2a">
+              <div class="drawing-box" data-id="img-2a">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-2a">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos" data-pos="top" data-zone="img-2a">▲ arriba</button>
+              <button class="btn-zone-pos active" data-pos="bottom" data-zone="img-2a">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page right" data-page-side="right">
+          <div class="page-inner">
+            <span class="corner tr">❧</span>
+            <span class="corner br">❧</span>
+
+            <div class="zone zone-image zone-top" data-zone-id="img-2b">
+              <div class="drawing-box" data-id="img-2b">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <div class="zone zone-text zone-bottom">
+              <textarea data-id="page-2b" class="auto-resize"
+                placeholder="…el momento en que todo cambió."></textarea>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-2b">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos active" data-pos="top" data-zone="img-2b">▲ arriba</button>
+              <button class="btn-zone-pos" data-pos="bottom" data-zone="img-2b">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           CAPÍTULO III — Lo que sentí al verte
+      ═══════════════════════════════════════════ -->
+      <section class="spread" data-spread="3" data-chapter="3" data-label="Cap. III">
+
+        <div class="page" data-page-side="left">
+          <div class="page-inner">
+            <span class="corner tl">❧</span>
+            <span class="corner bl">❧</span>
+
+            <div class="chapter">Capítulo III</div>
+            <div class="page-title">Lo que sentí<br>al verte</div>
+            <div class="page-title-divider"></div>
+
+            <div class="zone zone-image zone-top" data-zone-id="img-3a">
+              <div class="drawing-box" data-id="img-3a">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <div class="zone zone-text zone-bottom">
+              <textarea data-id="page-3a" class="auto-resize"
+                placeholder="¿Qué pensaste al verla?…"></textarea>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-3a">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos active" data-pos="top" data-zone="img-3a">▲ arriba</button>
+              <button class="btn-zone-pos" data-pos="bottom" data-zone="img-3a">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page right" data-page-side="right">
+          <div class="page-inner">
+            <span class="corner tr">❧</span>
+            <span class="corner br">❧</span>
+
+            <div class="zone zone-text zone-top">
+              <textarea data-id="page-3b" class="auto-resize"
+                placeholder="Lo que sentiste por dentro…"></textarea>
+            </div>
+
+            <div class="zone zone-image zone-bottom" data-zone-id="img-3b">
+              <div class="drawing-box" data-id="img-3b">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-3b">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos" data-pos="top" data-zone="img-3b">▲ arriba</button>
+              <button class="btn-zone-pos active" data-pos="bottom" data-zone="img-3b">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           CAPÍTULO IV — Nuestro primer momento juntos
+      ═══════════════════════════════════════════ -->
+      <section class="spread" data-spread="4" data-chapter="4" data-label="Cap. IV">
+
+        <div class="page" data-page-side="left">
+          <div class="page-inner">
+            <span class="corner tl">❧</span>
+            <span class="corner bl">❧</span>
+
+            <div class="chapter">Capítulo IV</div>
+            <div class="page-title">Nuestro primer<br>momento juntos</div>
+            <div class="page-title-divider"></div>
+
+            <div class="zone zone-text zone-top">
+              <textarea data-id="page-4a" class="auto-resize"
+                placeholder="La primera conversación, el primer plan…"></textarea>
+            </div>
+
+            <div class="zone zone-image zone-bottom" data-zone-id="img-4a">
+              <div class="drawing-box" data-id="img-4a">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-4a">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos" data-pos="top" data-zone="img-4a">▲ arriba</button>
+              <button class="btn-zone-pos active" data-pos="bottom" data-zone="img-4a">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page right" data-page-side="right">
+          <div class="page-inner">
+            <span class="corner tr">❧</span>
+            <span class="corner br">❧</span>
+
+            <div class="zone zone-image zone-top" data-zone-id="img-4b">
+              <div class="drawing-box" data-id="img-4b">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <div class="zone zone-text zone-bottom">
+              <textarea data-id="page-4b" class="auto-resize"
+                placeholder="…el primer momento en que supiste que era especial."></textarea>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-4b">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos active" data-pos="top" data-zone="img-4b">▲ arriba</button>
+              <button class="btn-zone-pos" data-pos="bottom" data-zone="img-4b">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           CAPÍTULO V — Y así comenzó nuestra historia
+      ═══════════════════════════════════════════ -->
+      <section class="spread" data-spread="5" data-chapter="5" data-label="Cap. V">
+
+        <div class="page" data-page-side="left">
+          <div class="page-inner">
+            <span class="corner tl">❧</span>
+            <span class="corner bl">❧</span>
+
+            <div class="zone zone-image zone-top" data-zone-id="img-5a">
+              <div class="drawing-box" data-id="img-5a">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <div class="zone zone-text zone-bottom">
+              <textarea data-id="page-5a" class="auto-resize"
+                placeholder="El camino hasta aquí…"></textarea>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-5a">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos active" data-pos="top" data-zone="img-5a">▲ arriba</button>
+              <button class="btn-zone-pos" data-pos="bottom" data-zone="img-5a">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page right" data-page-side="right">
+          <div class="page-inner">
+            <span class="corner tr">❧</span>
+            <span class="corner br">❧</span>
+
+            <div class="chapter">Capítulo V</div>
+            <div class="page-title">…y así comenzó<br>nuestra historia</div>
+            <div class="page-title-divider"></div>
+
+            <div class="zone zone-text zone-top">
+              <textarea data-id="page-5b" class="auto-resize"
+                placeholder="El final que en realidad es el comienzo…"></textarea>
+            </div>
+
+            <div class="zone zone-image zone-bottom" data-zone-id="img-5b">
+              <div class="drawing-box" data-id="img-5b">
+                <input type="file" accept="image/*">
+                <img alt="dibujo">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-5b">🖼 añadir imagen</button>
+
+            <div class="zone-controls">
+              <span>Imagen:</span>
+              <button class="btn-zone-pos" data-pos="top" data-zone="img-5b">▲ arriba</button>
+              <button class="btn-zone-pos active" data-pos="bottom" data-zone="img-5b">▼ abajo</button>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ═══════════════════════════════════════════
+           NOTAS & FOTOS
+      ═══════════════════════════════════════════ -->
+      <section class="spread" data-spread="6" data-chapter="notas" data-label="Notas">
+
+        <div class="page" data-page-side="left">
+          <div class="page-inner">
+            <span class="corner tl">❧</span>
+            <span class="corner bl">❧</span>
+
+            <div class="chapter">Notas</div>
+            <div class="page-title">Pensamientos<br>sueltos…</div>
+            <div class="page-title-divider"></div>
+
+            <div class="zone zone-text zone-fill">
+              <textarea data-id="page-notas-a" class="auto-resize"
+                placeholder="Todo lo que no cabe en los capítulos pero igual merece ser escrito…"></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="page right" data-page-side="right">
+          <div class="page-inner">
+            <span class="corner tr">❧</span>
+            <span class="corner br">❧</span>
+
+            <div class="zone zone-image zone-fill" data-zone-id="img-notas">
+              <div class="drawing-box" data-id="img-notas">
+                <input type="file" accept="image/*">
+                <img alt="foto">
+              </div>
+              <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+            </div>
+
+            <button class="btn-add-image" data-zone="img-notas">📷 añadir foto</button>
+
+          </div>
+        </div>
+
+      </section>
+      <!-- ═══════════════════════════════════════════
+                        CONTRAPORTADA
+           ═══════════════════════════════════════════ -->
+      <section class="spread back-spread" data-spread="7" data-chapter="end" data-label="Contraportada">
+        <div class="back-cover-page">
+          <div class="cover-ornament">🌹</div>
+          <div class="cover-title back-cover-title">Nuestra<br>Historia</div>
+          <div class="cover-divider"></div>
+          <div class="quote">
+            "Algunas historias no necesitan<br>
+              ser inventadas, solo contadas."
+          </div>
+          <div class="written-love">Escrito con amor ♡</div>
+          <div class="fin-stamp">Fin ✨</div>
+        </div>
+      </section> 
+
+
+
+    </div><!-- /pages-area -->
+  </div><!-- /book -->
+
+  <!-- NAVEGACIÓN -->
+  <div id="nav">
+    <button class="nav-btn" id="btn-prev" data-dir="-1">← Anterior</button>
+    <div class="page-indicator" id="page-indicator">Portada</div>
+    <button class="nav-btn" id="btn-next" data-dir="1">Siguiente →</button>
+  </div>
+
+</div><!-- /book-container -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     TEMPLATE DE SPREAD DINÁMICO
+     JS clona esto con document.getElementById('tpl-extra-spread')
+     .content.cloneNode(true) al agregar páginas extra.
+     Los data-id de textareas e imágenes se asignan en JS (UIDs únicos).
+     data-dynamic="true" identifica spreads generados en runtime.
+═══════════════════════════════════════════════════════════════ -->
+<template id="tpl-extra-spread">
+  <section class="spread spread-dynamic"
+           data-spread="" data-chapter="" data-label="" data-dynamic="true">
+
+    <!-- Página izquierda -->
+    <div class="page" data-page-side="left">
+      <div class="page-inner">
+        <span class="corner tl">❧</span>
+        <span class="corner bl">❧</span>
+
+        <!-- Encabezado: etiqueta de capítulo + botón eliminar página -->
+        <div class="dynamic-meta">
+          <span class="dynamic-chapter-label"></span>
+          <button class="btn-delete-spread" aria-label="Eliminar página">✕ eliminar página</button>
+        </div>
+
+        <div class="zone zone-text zone-top">
+          <textarea class="auto-resize" placeholder="Continúa aquí…"></textarea>
+        </div>
+
+        <div class="zone zone-image zone-bottom" data-zone-id="">
+          <div class="drawing-box">
+            <input type="file" accept="image/*">
+            <img alt="dibujo">
+          </div>
+          <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+        </div>
+
+        <button class="btn-add-image">🖼 añadir imagen</button>
+
+        <div class="zone-controls">
+          <span>Imagen:</span>
+          <button class="btn-zone-pos active" data-pos="top">▲ arriba</button>
+          <button class="btn-zone-pos" data-pos="bottom">▼ abajo</button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Página derecha -->
+    <div class="page right" data-page-side="right">
+      <div class="page-inner">
+        <span class="corner tr">❧</span>
+        <span class="corner br">❧</span>
+
+        <div class="zone zone-image zone-top" data-zone-id="">
+          <div class="drawing-box">
+            <input type="file" accept="image/*">
+            <img alt="dibujo">
+          </div>
+          <button class="zone-remove-img" aria-label="Quitar imagen">✕</button>
+        </div>
+
+        <div class="zone zone-text zone-bottom">
+          <textarea class="auto-resize" placeholder="…y seguimos escribiendo."></textarea>
+        </div>
+
+        <button class="btn-add-image">🖼 añadir imagen</button>
+
+        <div class="zone-controls">
+          <span>Imagen:</span>
+          <button class="btn-zone-pos active" data-pos="top">▲ arriba</button>
+          <button class="btn-zone-pos" data-pos="bottom">▼ abajo</button>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+</template>
+
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

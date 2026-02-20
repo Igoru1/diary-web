@@ -1,0 +1,733 @@
+/* ============================================================
+   BOOK.CSS — estructura del libro, páginas, zonas, nav
+   ============================================================ */
+
+
+/* ── Contenedor principal ── */
+
+#book-container {
+  position: relative;
+  z-index: 10;
+  width: min(700px, 95vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+#book {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,0.7));
+}
+
+
+/* ── Lomo ── */
+
+.spine {
+  width: 28px;
+  flex-shrink: 0;
+  background: linear-gradient(to right, #5a2010, var(--spine), #7a3020, #5a1808);
+  border-radius: 4px 0 0 4px;
+  box-shadow:
+    inset -3px 0 6px rgba(0,0,0,0.4),
+    inset 2px 0 4px rgba(255,200,100,0.1);
+  position: relative;
+  z-index: 2;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.spine::after {
+  content: 'Nuestra Historia';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  white-space: nowrap;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,210,120,0.6);
+  text-transform: uppercase;
+}
+
+/* Lomo oculto en páginas interiores */
+#book.interior .spine {
+  width: 0;
+}
+
+#book.interior .pages-area {
+  border-radius: 6px;
+}
+
+
+/* ── Área de páginas ── */
+
+.pages-area {
+  flex: 1;
+  position: relative;
+  min-height: var(--page-height);
+  overflow: hidden;
+  border-radius: 0 6px 6px 0;
+}
+
+
+/* ── Spreads ── */
+
+.spread {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spread.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Cabecera de spread dinámico */
+.dynamic-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex-shrink: 0;
+}
+
+.dynamic-chapter-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+
+/* ── Páginas ── */
+
+.page {
+  flex: 1;
+  background: var(--paper);
+  padding: var(--page-pad-v) var(--page-pad-h) calc(var(--page-pad-v) - 8px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: var(--page-height);
+}
+
+.page.right {
+  background: var(--paper2);
+  border-left: 1px solid rgba(139,58,42,0.15);
+}
+
+/* Líneas de cuaderno detrás del contenido */
+.page::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    transparent 0px, transparent 29px,
+    rgba(139,90,60,0.07) 29px, rgba(139,90,60,0.07) 30px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.page > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* page-inner ocupa toda la altura disponible y reparte el espacio */
+.page-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+/* Número de página */
+.page-num {
+  position: absolute;
+  bottom: 10px;
+  font-family: 'Lora', serif;
+  font-size: 0.65rem;
+  color: var(--faded);
+  opacity: 0.55;
+  z-index: 2;
+  pointer-events: none;
+}
+.page:not(.right) .page-num { right: 16px; }
+.page.right .page-num        { left: 16px; }
+
+/* Encabezados de capítulo */
+.chapter {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+.page-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+  color: var(--ink);
+  line-height: 1.28;
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+.page-title-divider {
+  width: 32px;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent), transparent);
+  opacity: 0.5;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-bottom: 2px;
+}
+
+/* Ornamentos de esquina */
+.corner {
+  position: absolute;
+  font-size: 1rem;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 2;
+}
+.corner.tl { top: 8px;  left: 10px; }
+.corner.tr { top: 8px;  right: 10px; transform: scaleX(-1); }
+.corner.bl { bottom: 20px; left: 10px;  transform: scaleY(-1); }
+.corner.br { bottom: 20px; right: 10px; transform: scale(-1); }
+
+
+/* ── ZONAS ── */
+
+.zone {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 0;
+}
+
+/* Zona texto: ocupa todo el espacio libre de la página */
+.zone-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+}
+
+/*
+  Zona imagen: colapsada por defecto (sin espacio).
+  Cuando hay imagen (.has-image) ocupa la mitad con flex:1.
+  La zona texto sigue teniendo flex:1 así que se reparten el espacio.
+*/
+.zone-image {
+  flex: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.zone-image.has-image {
+  flex: 1;
+  min-height: 100px;
+}
+
+/* Zona que llena todo el alto (página de notas, etc.) */
+.zone-fill {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Separador visual solo cuando hay imagen */
+.zone-image.has-image + .zone-text,
+.zone-text + .zone-image.has-image {
+  border-top: 1px dashed rgba(139,90,60,0.18);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+/* Zona imagen completamente oculta por el usuario */
+.zone-image.hidden {
+  display: none;
+}
+
+
+/* ── Drawing box ── */
+
+.drawing-box {
+  flex: 1;
+  border: 1px solid rgba(139,90,60,0.18);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.drawing-box input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.drawing-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 3px;
+  display: none;
+}
+
+.drawing-box.has-image img { display: block; }
+
+/* Botón quitar imagen — esquina superior derecha, solo cuando hay imagen */
+.zone-remove-img {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 3;
+  background: rgba(30,10,0,0.5);
+  border: none;
+  color: rgba(245,223,160,0.85);
+  font-size: 0.6rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s;
+}
+
+.zone-image.has-image .zone-remove-img {
+  display: flex;
+}
+
+.zone-remove-img:hover {
+  background: rgba(180,60,30,0.8);
+}
+
+
+/* ── Textarea ── */
+
+.zone-text textarea {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px dashed rgba(139,90,60,0.18);
+  resize: none;
+  font-family: 'Caveat', cursive;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink);
+  outline: none;
+  padding: 6px 2px 24px;
+  overflow-y: auto;
+}
+
+.zone-text textarea::placeholder {
+  color: rgba(122,96,80,0.36);
+  font-style: italic;
+}
+
+.zone-text textarea:focus {
+  border-bottom-color: rgba(184,92,56,0.38);
+}
+
+/* Scrollbar discreta */
+.zone-text textarea::-webkit-scrollbar       { width: 3px; }
+.zone-text textarea::-webkit-scrollbar-thumb { background: rgba(139,90,60,0.2); border-radius: 2px; }
+.zone-text textarea::-webkit-scrollbar-track { background: transparent; }
+
+
+/* ── Botón añadir imagen ── */
+
+/*
+  Siempre visible como una línea discreta.
+  Se oculta en cuanto la zona imagen tiene contenido (.has-image)
+  o mientras la zona imagen está visible sin imagen (el usuario
+  puede usar el input[type=file] directamente).
+*/
+.btn-add-image {
+  display: flex;
+  align-self: flex-start;
+  background: none;
+  border: 1px dashed rgba(139,90,60,0.22);
+  border-radius: 20px;
+  padding: 3px 10px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.7rem;
+  color: rgba(122,96,80,0.45);
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+.btn-add-image:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Ocultar cuando la zona imagen no está hidden (ya es visible o tiene imagen) */
+.zone-image:not(.hidden) ~ .btn-add-image {
+  display: none;
+}
+
+
+/* ── Controles de posición de imagen ── */
+
+/* Ocultos por defecto — solo aparecen cuando hay imagen cargada */
+.zone-controls {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.zone-image.has-image ~ .zone-controls {
+  display: flex;
+}
+
+.zone-controls > span {
+  font-family: 'Caveat', cursive;
+  font-size: 0.68rem;
+  color: var(--faded);
+  opacity: 0.55;
+}
+
+.btn-zone-pos {
+  background: none;
+  border: 1px solid rgba(139,90,60,0.22);
+  border-radius: 12px;
+  padding: 2px 7px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.66rem;
+  color: var(--faded);
+  cursor: pointer;
+  transition: all 0.18s;
+  opacity: 0.6;
+}
+
+.btn-zone-pos:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 1;
+}
+
+.btn-zone-pos.active {
+  background: rgba(184,92,56,0.1);
+  border-color: var(--accent);
+  color: var(--accent);
+  opacity: 1;
+}
+
+
+/* ── Botón añadir página ── */
+
+.btn-add-spread {
+  display: block;
+  width: 100%;
+  margin-top: auto;
+  padding: 5px 0;
+  background: none;
+  border: 1px dashed rgba(139,90,60,0.2);
+  border-radius: 6px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.72rem;
+  color: rgba(122,96,80,0.4);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+
+.btn-add-spread:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(184,92,56,0.04);
+}
+
+
+/* ── Botón eliminar spread dinámico ── */
+
+.btn-delete-spread {
+  background: none;
+  border: 1px solid rgba(184,92,56,0.22);
+  border-radius: 12px;
+  padding: 2px 8px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.66rem;
+  color: rgba(184,92,56,0.5);
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-delete-spread:hover {
+  background: rgba(184,92,56,0.1);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+
+/* ── Navegación ── */
+
+#nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+  padding: 0 8px;
+}
+
+.nav-btn {
+  background: rgba(245,223,160,0.1);
+  border: 1px solid rgba(245,223,160,0.22);
+  color: rgba(245,223,160,0.75);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-family: 'Lora', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+  white-space: nowrap;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: rgba(245,223,160,0.2);
+  border-color: rgba(245,223,160,0.5);
+  color: #f5dfa0;
+}
+
+.nav-btn:disabled {
+  opacity: 0.2;
+  cursor: default;
+}
+
+.page-indicator {
+  font-family: 'Caveat', cursive;
+  font-size: 0.88rem;
+  color: rgba(245,223,160,0.4);
+  min-width: 80px;
+  text-align: center;
+}
+
+
+/* ============================================================
+   RESPONSIVO — MÓVIL (≤ 600px)
+   Una página a la vez, sin doble columna
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  #book-container {
+    width: 100vw;
+    padding: 0 8px;
+  }
+
+  #book {
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.6));
+  }
+
+  .spine {
+    display: none;
+  }
+
+  .pages-area {
+    border-radius: 8px;
+    min-height: 0;
+    height: calc(100svh - 80px);
+  }
+
+  .spread {
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+  }
+
+  .spread .page {
+    display: none;
+    min-height: 0;
+    height: 100%;
+    padding: 28px 22px 36px;
+  }
+
+  .spread .page.mobile-active {
+    display: flex;
+  }
+
+  .cover-spread .cover-page,
+  .back-spread .back-cover-page,
+  .back-spread .page {
+    display: flex !important;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .mobile-page-dot {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .mobile-page-dot span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(245,223,160,0.25);
+    transition: background 0.2s;
+  }
+
+  .mobile-page-dot span.active {
+    background: rgba(245,223,160,0.7);
+  }
+
+  #nav {
+    margin-top: 14px;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-btn {
+    padding: 10px 18px;
+    font-size: 0.82rem;
+    min-width: 100px;
+    text-align: center;
+  }
+
+  .page-indicator {
+    font-size: 0.82rem;
+    min-width: 60px;
+  }
+
+  .zone-image.has-image {
+    min-height: 180px;
+  }
+
+  .zone-image.zone-fill.has-image {
+    min-height: 260px;
+  }
+
+  .page-inner {
+    height: 100%;
+  }
+
+  .btn-zone-pos,
+  .btn-add-image,
+  .btn-delete-spread,
+  .btn-add-spread {
+    padding: 5px 14px;
+    font-size: 0.78rem;
+  }
+}
+
+
+/* ═══════════════════════════════════════════
+   BOTONES FLOTANTES — editar y compartir
+═══════════════════════════════════════════ */
+
+.btn-edit-mode,
+.btn-share {
+  position: fixed;
+  z-index: 100;
+  bottom: 24px;
+  border-radius: 30px;
+  font-family: 'Caveat', cursive;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.22s;
+  backdrop-filter: blur(8px);
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(245,223,160,0.2);
+  padding: 9px 20px;
+  color: rgba(245,223,160,0.7);
+  background: rgba(30,10,4,0.65);
+}
+
+.btn-edit-mode { right: 24px; }
+.btn-share     { right: 156px; }
+
+.btn-edit-mode:hover,
+.btn-share:hover {
+  background: rgba(184,92,56,0.25);
+  border-color: rgba(245,223,160,0.45);
+  color: #f5dfa0;
+}
+
+body.edit-mode .btn-edit-mode {
+  background: rgba(184,92,56,0.3);
+  border-color: rgba(245,223,160,0.5);
+  color: #f5dfa0;
+}
+
+
+/* ═══════════════════════════════════════════
+   MODO LECTURA — ocultar controles de edición
+═══════════════════════════════════════════ */
+
+body:not(.edit-mode) .btn-add-image,
+body:not(.edit-mode) .btn-add-spread,
+body:not(.edit-mode) .btn-delete-spread,
+body:not(.edit-mode) .zone-controls,
+body:not(.edit-mode) .zone-remove-img,
+body:not(.edit-mode) .dynamic-meta {
+  display: none !important;
+}
+
+body:not(.edit-mode) textarea {
+  cursor: default;
+  pointer-events: none;
+  border-bottom-color: transparent;
+}
+
+body:not(.edit-mode) .drawing-box input[type="file"] {
+  pointer-events: none;
+}
+
+
+/* ═══════════════════════════════════════════
+   LOADING — mientras carga Firebase
+═══════════════════════════════════════════ */
+
+body.loading #book-container {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body:not(.loading) #book-container {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}

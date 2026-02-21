@@ -63,6 +63,11 @@ function setEditMode(active) {
   document.querySelectorAll('.drawing-box input[type="file"]').forEach(inp => {
     inp.disabled = !active;
   });
+
+  // Content Editable
+  document.querySelectorAll('[contenteditable]').forEach(el => {
+  el.contentEditable = active ? 'true' : 'false';
+  });
 }
 
 function initEditModeButton() {
@@ -319,6 +324,32 @@ async function init() {
       jumpToSpread(state.current);
       updateNav();
     }
+  });
+}
+function initEditables() {
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    el.addEventListener('blur', () => {
+      const val = el.innerHTML.trim();
+      
+  // Guardar siempre, incluso vacío
+  saveEditable(el.dataset.editable, val);
+  // Si quedó vacío, no hacer nada más — el CSS :empty muestra el placeholder
+});
+    // Enter no crea <div> extra, solo <br>
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        document.execCommand('insertLineBreak');
+      }
+    });
+  });
+}
+
+function restoreEditables(saved) {
+  const editables = saved.editables || {};
+  Object.entries(editables).forEach(([id, html]) => {
+    const el = document.querySelector(`[data-editable="${id}"]`);
+    if (el) el.innerHTML = html;
   });
 }
 

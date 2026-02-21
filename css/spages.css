@@ -220,6 +220,7 @@
 
   .cover-title {
     font-size: clamp(1.6rem, 8vw, 2.2rem);
+    min-height: 2px;
   }
 
   .back-cover-page .quote {

@@ -52,6 +52,21 @@ body::before {
   pointer-events: none;
 }
 
+[data-editable]:empty::before {
+  content: attr(data-placeholder);
+  opacity: 0.35;
+  font-style: italic;
+  pointer-events: none;
+}
+
+[data-editable] {
+  min-height: 1.2em;
+}
+body:not(.edit-mode) [contenteditable] {
+  pointer-events: none;
+  cursor: default;
+}
+
 /* Desktop: sin scroll, todo centrado */
 @media (min-width: 601px) {
   html, body {

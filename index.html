@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Nuestra Historia</title>
+  <title>Mi Libro</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;1,400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/book.css">
@@ -15,30 +15,26 @@
 <div id="book-container">
   <div id="book">
     <div class="spine"></div>
-    <div class="pages-area" id="pages-area">
+    <div class="pages-area" id="pages-area"></div>
 
 
       <!-- ═══════════════════════════════════════════
-           PORTADA
-      ═══════════════════════════════════════════ -->
+            PORTADA
+           ═══════════════════════════════════════════ -->
       <section class="spread cover-spread active"
                data-spread="0" data-chapter="cover" data-label="Portada">
 
         <div class="cover-page">
-          <div class="cover-ornament">🌹</div>
-          <div class="cover-title">Nuestra<br>Historia</div>
+          <div class="cover-ornament" data-editable="cover-ornament" contenteditable="true" data-placeholder="icon"></div>
+          <div class="cover-title" data-editable="cover-title" contenteditable="true" data-placeholder="Insertar Titulo"></div>
           <div class="cover-divider"></div>
-          <div class="cover-subtitle">
-            El cuento de dos personas<br>que se encontraron
-          </div>
+          <div class="cover-subtitle" data-editable="cover-subtitle" contenteditable="true" data-placeholder="Insertar subtítulo o frase"></div>
         </div>
-
       </section>
 
-
-      <!-- ═══════════════════════════════════════════
-           CAPÍTULO I — Antes de conocernos
-      ═══════════════════════════════════════════ -->
+      <!--═══════════════════════════════════════════
+           CAPÍTULO I pred...
+          ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="1" data-chapter="1" data-label="Cap. I">
 
         <!-- Página izquierda: título + texto -->
@@ -48,12 +44,12 @@
             <span class="corner bl">❧</span>
 
             <div class="chapter">Capítulo I</div>
-            <div class="page-title">Antes de<br>conocernos…</div>
+            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-text zone-fill">
               <textarea data-id="page-1a" class="auto-resize"
-                placeholder="Escribe aquí… cómo era tu vida antes de que todo cambiara."></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
           </div>
@@ -67,7 +63,7 @@
 
             <div class="zone zone-text zone-top">
               <textarea data-id="page-1b" class="auto-resize"
-                placeholder="…cómo era tu vida antes de que ella llegara."></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <div class="zone zone-image zone-bottom" data-zone-id="img-1b">
@@ -93,7 +89,7 @@
 
 
       <!-- ═══════════════════════════════════════════
-           CAPÍTULO II — El día que nos conocimos
+           CAPÍTULO II - pred...
       ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="2" data-chapter="2" data-label="Cap. II">
 
@@ -103,12 +99,12 @@
             <span class="corner bl">❧</span>
 
             <div class="chapter">Capítulo II</div>
-            <div class="page-title">El día que<br>nos conocimos</div>
+            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-text zone-top">
               <textarea data-id="page-2a" class="auto-resize"
-                placeholder="¿Dónde fue? ¿Qué pasó exactamente?…"></textarea>
+                placeholder="Escribe aqui..."></textarea>
             </div>
 
             <div class="zone zone-image zone-bottom" data-zone-id="img-2a">
@@ -145,7 +141,7 @@
 
             <div class="zone zone-text zone-bottom">
               <textarea data-id="page-2b" class="auto-resize"
-                placeholder="…el momento en que todo cambió."></textarea>
+                placeholder="Escribe aqui"></textarea>
             </div>
 
             <button class="btn-add-image" data-zone="img-2b">🖼 añadir imagen</button>
@@ -163,7 +159,7 @@
 
 
       <!-- ═══════════════════════════════════════════
-           CAPÍTULO III — Lo que sentí al verte
+           CAPÍTULO III — pred...
       ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="3" data-chapter="3" data-label="Cap. III">
 
@@ -173,7 +169,7 @@
             <span class="corner bl">❧</span>
 
             <div class="chapter">Capítulo III</div>
-            <div class="page-title">Lo que sentí<br>al verte</div>
+            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-image zone-top" data-zone-id="img-3a">
@@ -186,7 +182,7 @@
 
             <div class="zone zone-text zone-bottom">
               <textarea data-id="page-3a" class="auto-resize"
-                placeholder="¿Qué pensaste al verla?…"></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <button class="btn-add-image" data-zone="img-3a">🖼 añadir imagen</button>
@@ -207,7 +203,7 @@
 
             <div class="zone zone-text zone-top">
               <textarea data-id="page-3b" class="auto-resize"
-                placeholder="Lo que sentiste por dentro…"></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <div class="zone zone-image zone-bottom" data-zone-id="img-3b">
@@ -233,7 +229,7 @@
 
 
       <!-- ═══════════════════════════════════════════
-           CAPÍTULO IV — Nuestro primer momento juntos
+           CAPÍTULO IV — pred...
       ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="4" data-chapter="4" data-label="Cap. IV">
 
@@ -243,12 +239,12 @@
             <span class="corner bl">❧</span>
 
             <div class="chapter">Capítulo IV</div>
-            <div class="page-title">Nuestro primer<br>momento juntos</div>
+            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-text zone-top">
               <textarea data-id="page-4a" class="auto-resize"
-                placeholder="La primera conversación, el primer plan…"></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <div class="zone zone-image zone-bottom" data-zone-id="img-4a">
@@ -285,7 +281,7 @@
 
             <div class="zone zone-text zone-bottom">
               <textarea data-id="page-4b" class="auto-resize"
-                placeholder="…el primer momento en que supiste que era especial."></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <button class="btn-add-image" data-zone="img-4b">🖼 añadir imagen</button>
@@ -303,7 +299,7 @@
 
 
       <!-- ═══════════════════════════════════════════
-           CAPÍTULO V — Y así comenzó nuestra historia
+           CAPÍTULO V — pred...
       ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="5" data-chapter="5" data-label="Cap. V">
 
@@ -322,7 +318,7 @@
 
             <div class="zone zone-text zone-bottom">
               <textarea data-id="page-5a" class="auto-resize"
-                placeholder="El camino hasta aquí…"></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <button class="btn-add-image" data-zone="img-5a">🖼 añadir imagen</button>
@@ -342,12 +338,12 @@
             <span class="corner br">❧</span>
 
             <div class="chapter">Capítulo V</div>
-            <div class="page-title">…y así comenzó<br>nuestra historia</div>
+            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-text zone-top">
               <textarea data-id="page-5b" class="auto-resize"
-                placeholder="El final que en realidad es el comienzo…"></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <div class="zone zone-image zone-bottom" data-zone-id="img-5b">
@@ -418,14 +414,14 @@
            ═══════════════════════════════════════════ -->
       <section class="spread back-spread" data-spread="7" data-chapter="end" data-label="Contraportada">
         <div class="back-cover-page">
-          <div class="cover-ornament">🌹</div>
-          <div class="cover-title back-cover-title">Nuestra<br>Historia</div>
+          <div class="cover-ornament" data-editable="cover-ornament" contenteditable="true" data-placeholder="icon"></div>
+          <div class="cover-title back-cover-title" data-editable="cover-title" contenteditable="true" data-placeholder="Insertar título de portada"></div>
           <div class="cover-divider"></div>
           <div class="quote">
             "Algunas historias no necesitan<br>
               ser inventadas, solo contadas."
           </div>
-          <div class="written-love">Escrito con amor ♡</div>
+          <div class="written-love" data-editable="writen-love" contenteditable="true" data-placeholder="inserta frase final"></div>
           <div class="fin-stamp">Fin ✨</div>
         </div>
       </section> 

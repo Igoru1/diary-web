@@ -41,7 +41,6 @@
 }
 
 .spine::after {
-  content: 'Nuestra Historia';
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%) rotate(-90deg);
@@ -729,7 +728,6 @@ body:not(.edit-mode) textarea {
 body:not(.edit-mode) .drawing-box input[type="file"] {
   pointer-events: none;
 }
-
 
 /* ═══════════════════════════════════════════
    LOADING — mientras carga Firebase

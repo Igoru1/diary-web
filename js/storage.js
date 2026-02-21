@@ -122,3 +122,6 @@ export function subscribeToChanges(callback) {
 export function getShareUrl() {
   return `${window.location.origin}${window.location.pathname}?id=${BOOK_ID}`;
 }
+export function saveEditable(id, value) {
+  patch({ [`editables.${id}`]: value });
+}

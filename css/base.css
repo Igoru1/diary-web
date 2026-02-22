@@ -79,7 +79,7 @@ body:not(.edit-mode) [contenteditable] {
 @media (max-width: 600px) {
   body {
     justify-content: flex-start;
-    padding: 20px 0 40px;
+    padding: 0;          /* quitar el padding */
     overflow-y: auto;
   }
 }

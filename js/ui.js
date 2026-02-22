@@ -234,19 +234,14 @@ export function initAddPageButtons() {
     btn.textContent = '+ añadir página';
     btn.title = 'Agregar una página extra a este capítulo';
     btn.addEventListener('click', () => {
-      // Navegar primero al spread que contiene el botón
       const spreads = Array.from(document.querySelectorAll('.spread'));
       const idx = spreads.indexOf(spread);
-      // Forzar current al spread correcto antes de insertar
-      import('./book.js').then(({ state, jumpToSpread, addDynamicSpread: add }) => {
-        if (state.current !== idx) jumpToSpread(idx);
-        const newSection = addDynamicSpread();
-        // Inicializar eventos del spread nuevo
-        initTextareas(newSection);
-        initImageInputs(newSection);
-        initZoneControls(newSection);
-        initDeleteButtons(newSection);
-      });
+      if (state.current !== idx) jumpToSpread(idx);
+      const newSection = addDynamicSpread();
+      initTextareas(newSection);
+      initImageInputs(newSection);
+      initZoneControls(newSection);
+      initDeleteButtons(newSection);
     });
     rightPage.appendChild(btn);
   });

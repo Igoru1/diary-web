@@ -4,6 +4,7 @@
    - Modo lectura (default) / modo edición
    - Sincronización en tiempo real entre usuarios
    - Botón compartir link
+   - Títulos y capítulos editables (contenteditable)
    ============================================================ */
 
 import {
@@ -13,15 +14,13 @@ import {
   updateNav,
   renumberPages,
   setDynamicList,
-  getSpreads,
 } from './book.js';
 
 import {
   getState,
-  saveCurrentSpread,
-  saveZone,
   subscribeToChanges,
   getShareUrl,
+  saveEditable,
 } from './storage.js';
 
 import {
@@ -50,60 +49,97 @@ function setEditMode(active) {
 
   const btn = document.getElementById('btn-edit-mode');
   if (btn) {
-    btn.textContent = active ? '👁 modo lectura' : '✏️ editar';
-    btn.title       = active ? 'Cambiar a modo lectura' : 'Cambiar a modo edición';
+    btn.textContent = active ? '👁 lectura' : '✏️ editar';
+    btn.title = active ? 'Cambiar a modo lectura' : 'Cambiar a modo edición';
   }
 
-  // Habilitar o deshabilitar textareas
+  // Textareas
   document.querySelectorAll('textarea').forEach(ta => {
     ta.readOnly = !active;
   });
 
-  // Habilitar o deshabilitar inputs de archivo
+  // Inputs de imagen
   document.querySelectorAll('.drawing-box input[type="file"]').forEach(inp => {
     inp.disabled = !active;
   });
 
-  // Content Editable
-  document.querySelectorAll('[contenteditable]').forEach(el => {
-  el.contentEditable = active ? 'true' : 'false';
+  // Títulos y elementos contenteditable
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    el.contentEditable = active ? 'true' : 'false';
   });
-}
-
-function initEditModeButton() {
-  const btn = document.createElement('button');
-  btn.id        = 'btn-edit-mode';
-  btn.className = 'btn-edit-mode';
-  btn.textContent = '✏️ editar';
-  btn.title     = 'Cambiar a modo edición';
-  btn.addEventListener('click', () => setEditMode(!editMode));
-  document.getElementById('book-container').appendChild(btn);
 }
 
 
 /* ═══════════════════════════════════════════
-   BOTÓN COMPARTIR
+   BOTONES DE CONTROL (editar + compartir)
+   — en desktop: fixed abajo a la derecha
+   — en móvil: dentro del #nav
 ═══════════════════════════════════════════ */
 
-function initShareButton() {
-  const btn = document.createElement('button');
-  btn.id        = 'btn-share';
-  btn.className = 'btn-share';
-  btn.textContent = '🔗 compartir';
-  btn.title     = 'Copiar link para compartir';
+function initControlButtons() {
+  const btnEdit = document.createElement('button');
+  btnEdit.id = 'btn-edit-mode';
+  btnEdit.className = 'btn-edit-mode';
+  btnEdit.textContent = '✏️ editar';
+  btnEdit.addEventListener('click', () => setEditMode(!editMode));
 
-  btn.addEventListener('click', async () => {
+  const btnShare = document.createElement('button');
+  btnShare.id = 'btn-share';
+  btnShare.className = 'btn-share';
+  btnShare.textContent = '🔗';
+  btnShare.addEventListener('click', async () => {
     const url = getShareUrl();
     try {
       await navigator.clipboard.writeText(url);
-      btn.textContent = '✓ link copiado';
-      setTimeout(() => { btn.textContent = '🔗 compartir'; }, 2200);
+      btnShare.textContent = '✓';
+      setTimeout(() => { btnShare.textContent = '🔗'; }, 2200);
     } catch {
       prompt('Copia este link:', url);
     }
   });
 
-  document.getElementById('book-container').appendChild(btn);
+  if (state.isMobile) {
+    // En móvil: barra flotante propia, no toca el nav
+    const bar = document.createElement('div');
+    bar.id = 'action-bar';
+    bar.appendChild(btnShare);
+    bar.appendChild(btnEdit);
+    document.body.appendChild(bar);
+  } else {
+    // En desktop: fixed abajo a la derecha
+    document.getElementById('book-container').appendChild(btnEdit);
+    document.getElementById('book-container').appendChild(btnShare);
+  }
+}
+
+
+/* ═══════════════════════════════════════════
+   EDITABLES — títulos, subtítulos, capítulos
+═══════════════════════════════════════════ */
+
+function initEditables() {
+  document.querySelectorAll('[data-editable]').forEach(el => {
+    // Guardar al salir del elemento
+    el.addEventListener('blur', () => {
+      saveEditable(el.dataset.editable, el.innerHTML.trim());
+    });
+
+    // Enter inserta <br> en lugar de crear un <div> nuevo
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        document.execCommand('insertLineBreak');
+      }
+    });
+  });
+}
+
+function restoreEditables(saved) {
+  const editables = saved.editables || {};
+  Object.entries(editables).forEach(([id, html]) => {
+    const el = document.querySelector(`[data-editable="${id}"]`);
+    if (el) el.innerHTML = html;
+  });
 }
 
 
@@ -173,9 +209,15 @@ function rebuildDynamicSpreads(saved) {
 ═══════════════════════════════════════════ */
 
 function restoreContent(saved) {
+  console.log('textos', saved.texts);
+  console.log('imágenes', saved.images);
+  console.log('zonas', saved.zones);
+  console.log('texareas', document.querySelectorAll('textarea[data-id]').length);
   // Textos
   document.querySelectorAll('textarea[data-id]').forEach(el => {
+    console.log('textarea', el.dataset.id, 'valor guardado:', saved.texts?.[el.dataset.id]);
     const val = saved.texts?.[el.dataset.id];
+    
     if (val) {
       el.value = val;
       autoResize(el);
@@ -230,37 +272,41 @@ function restoreContent(saved) {
       });
     }
   });
+
+  // Editables
+  restoreEditables(saved);
 }
 
 
 /* ═══════════════════════════════════════════
    SYNC EN TIEMPO REAL
-   Cuando otro usuario guarda algo, actualiza
-   solo los campos que cambiaron en el DOM.
 ═══════════════════════════════════════════ */
 
 let lastSavedState = {};
 
 function applyRemoteChanges(newState) {
   // Textos
-  const texts = newState.texts || {};
-  Object.entries(texts).forEach(([id, val]) => {
-    if (lastSavedState.texts?.[id] === val) return; // sin cambio
+  Object.entries(newState.texts || {}).forEach(([id, val]) => {
+    if (lastSavedState.texts?.[id] === val) return;
     const el = document.querySelector(`textarea[data-id="${id}"]`);
-    if (el && document.activeElement !== el) {
-      el.value = val;
-    }
+    if (el && document.activeElement !== el) el.value = val;
   });
 
   // Imágenes
-  const images = newState.images || {};
-  Object.entries(images).forEach(([id, src]) => {
+  Object.entries(newState.images || {}).forEach(([id, src]) => {
     if (lastSavedState.images?.[id] === src) return;
     const box = document.querySelector(`.drawing-box[data-id="${id}"]`);
     if (box && !box.classList.contains('has-image')) {
       loadImageIntoBox(box, src);
       box.closest('.zone-image')?.classList.add('has-image');
     }
+  });
+
+  // Editables remotos
+  Object.entries(newState.editables || {}).forEach(([id, html]) => {
+    if (lastSavedState.editables?.[id] === html) return;
+    const el = document.querySelector(`[data-editable="${id}"]`);
+    if (el && document.activeElement !== el) el.innerHTML = html;
   });
 
   lastSavedState = newState;
@@ -274,22 +320,19 @@ function applyRemoteChanges(newState) {
 async function init() {
   checkMobile();
 
-  // Mostrar loading mientras carga Firebase
   document.body.classList.add('loading');
-
   const saved = await getState();
   lastSavedState = saved;
-
   document.body.classList.remove('loading');
 
-  // Reconstruir spreads dinámicos
+  // Reconstruir spreads dinámicos guardados
   rebuildDynamicSpreads(saved);
   renumberPages();
 
-  // Restaurar contenido
+  // Restaurar contenido (textos, imágenes, zonas, editables)
   restoreContent(saved);
 
-  // Inicializar eventos
+  // Eventos
   initTextareas();
   initImageInputs();
   initZoneControls();
@@ -298,25 +341,23 @@ async function init() {
   initSwipe();
   initKeyboard();
   initAddPageButtons();
+  initEditables();
 
-  // Iniciar en modo lectura por defecto
+  // Arrancar en modo lectura
   setEditMode(false);
 
-  // Botones flotantes
-  initEditModeButton();
-  initShareButton();
+  // Botones editar + compartir
+  initControlButtons();
 
-  // Navegar a la página guardada
+  // Posición guardada
   state.mobilePageSide = saved.mobilePageSide || 'left';
   jumpToSpread(saved.currentSpread || 0);
   updateNav();
 
-  // Escuchar cambios en tiempo real de otros usuarios
-  subscribeToChanges(newState => {
-    applyRemoteChanges(newState);
-  });
+  // Escuchar cambios remotos
+  subscribeToChanges(newState => applyRemoteChanges(newState));
 
-  // Resize
+  // Resize (rotar pantalla)
   window.addEventListener('resize', () => {
     const wasMobile = state.isMobile;
     checkMobile();
@@ -324,32 +365,6 @@ async function init() {
       jumpToSpread(state.current);
       updateNav();
     }
-  });
-}
-function initEditables() {
-  document.querySelectorAll('[data-editable]').forEach(el => {
-    el.addEventListener('blur', () => {
-      const val = el.innerHTML.trim();
-      
-  // Guardar siempre, incluso vacío
-  saveEditable(el.dataset.editable, val);
-  // Si quedó vacío, no hacer nada más — el CSS :empty muestra el placeholder
-});
-    // Enter no crea <div> extra, solo <br>
-    el.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        document.execCommand('insertLineBreak');
-      }
-    });
-  });
-}
-
-function restoreEditables(saved) {
-  const editables = saved.editables || {};
-  Object.entries(editables).forEach(([id, html]) => {
-    const el = document.querySelector(`[data-editable="${id}"]`);
-    if (el) el.innerHTML = html;
   });
 }
 

@@ -15,36 +15,51 @@
 <div id="book-container">
   <div id="book">
     <div class="spine"></div>
-    <div class="pages-area" id="pages-area"></div>
 
+    <!-- ↓ TODOS los spreads van DENTRO de pages-area ↓ -->
+    <div class="pages-area" id="pages-area">
 
       <!-- ═══════════════════════════════════════════
-            PORTADA
-           ═══════════════════════════════════════════ -->
+           PORTADA
+      ═══════════════════════════════════════════ -->
       <section class="spread cover-spread active"
                data-spread="0" data-chapter="cover" data-label="Portada">
-
         <div class="cover-page">
-          <div class="cover-ornament" data-editable="cover-ornament" contenteditable="true" data-placeholder="icon"></div>
-          <div class="cover-title" data-editable="cover-title" contenteditable="true" data-placeholder="Insertar Titulo"></div>
+          <div class="cover-ornament"
+               data-editable="cover-ornament"
+               contenteditable="true"
+               data-placeholder="🌹"></div>
+          <div class="cover-title"
+               data-editable="cover-title"
+               contenteditable="true"
+               data-placeholder="Insertar título"></div>
           <div class="cover-divider"></div>
-          <div class="cover-subtitle" data-editable="cover-subtitle" contenteditable="true" data-placeholder="Insertar subtítulo o frase"></div>
+          <div class="cover-subtitle"
+               data-editable="cover-subtitle"
+               contenteditable="true"
+               data-placeholder="Insertar subtítulo o frase"></div>
         </div>
       </section>
 
-      <!--═══════════════════════════════════════════
-           CAPÍTULO I pred...
-          ═══════════════════════════════════════════ -->
+
+      <!-- ═══════════════════════════════════════════
+           CAPÍTULO I
+      ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="1" data-chapter="1" data-label="Cap. I">
 
-        <!-- Página izquierda: título + texto -->
         <div class="page" data-page-side="left">
           <div class="page-inner">
             <span class="corner tl">❧</span>
             <span class="corner bl">❧</span>
 
-            <div class="chapter">Capítulo I</div>
-            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
+            <div class="chapter"
+                 data-editable="chapter-1"
+                 contenteditable="true"
+                 data-placeholder="Capítulo I"></div>
+            <div class="page-title"
+                 data-editable="title-1"
+                 contenteditable="true"
+                 data-placeholder="Título del capítulo"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-text zone-fill">
@@ -55,7 +70,6 @@
           </div>
         </div>
 
-        <!-- Página derecha: texto + zona imagen -->
         <div class="page right" data-page-side="right">
           <div class="page-inner">
             <span class="corner tr">❧</span>
@@ -89,7 +103,7 @@
 
 
       <!-- ═══════════════════════════════════════════
-           CAPÍTULO II - pred...
+           CAPÍTULO II
       ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="2" data-chapter="2" data-label="Cap. II">
 
@@ -98,13 +112,19 @@
             <span class="corner tl">❧</span>
             <span class="corner bl">❧</span>
 
-            <div class="chapter">Capítulo II</div>
-            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
+            <div class="chapter"
+                 data-editable="chapter-2"
+                 contenteditable="true"
+                 data-placeholder="Capítulo II"></div>
+            <div class="page-title"
+                 data-editable="title-2"
+                 contenteditable="true"
+                 data-placeholder="Título del capítulo"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-text zone-top">
               <textarea data-id="page-2a" class="auto-resize"
-                placeholder="Escribe aqui..."></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <div class="zone zone-image zone-bottom" data-zone-id="img-2a">
@@ -141,7 +161,7 @@
 
             <div class="zone zone-text zone-bottom">
               <textarea data-id="page-2b" class="auto-resize"
-                placeholder="Escribe aqui"></textarea>
+                placeholder="Escribe aquí…"></textarea>
             </div>
 
             <button class="btn-add-image" data-zone="img-2b">🖼 añadir imagen</button>
@@ -159,7 +179,7 @@
 
 
       <!-- ═══════════════════════════════════════════
-           CAPÍTULO III — pred...
+           CAPÍTULO III
       ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="3" data-chapter="3" data-label="Cap. III">
 
@@ -168,8 +188,14 @@
             <span class="corner tl">❧</span>
             <span class="corner bl">❧</span>
 
-            <div class="chapter">Capítulo III</div>
-            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
+            <div class="chapter"
+                 data-editable="chapter-3"
+                 contenteditable="true"
+                 data-placeholder="Capítulo III"></div>
+            <div class="page-title"
+                 data-editable="title-3"
+                 contenteditable="true"
+                 data-placeholder="Título del capítulo"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-image zone-top" data-zone-id="img-3a">
@@ -229,7 +255,7 @@
 
 
       <!-- ═══════════════════════════════════════════
-           CAPÍTULO IV — pred...
+           CAPÍTULO IV
       ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="4" data-chapter="4" data-label="Cap. IV">
 
@@ -238,8 +264,14 @@
             <span class="corner tl">❧</span>
             <span class="corner bl">❧</span>
 
-            <div class="chapter">Capítulo IV</div>
-            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
+            <div class="chapter"
+                 data-editable="chapter-4"
+                 contenteditable="true"
+                 data-placeholder="Capítulo IV"></div>
+            <div class="page-title"
+                 data-editable="title-4"
+                 contenteditable="true"
+                 data-placeholder="Título del capítulo"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-text zone-top">
@@ -299,7 +331,7 @@
 
 
       <!-- ═══════════════════════════════════════════
-           CAPÍTULO V — pred...
+           CAPÍTULO V
       ═══════════════════════════════════════════ -->
       <section class="spread" data-spread="5" data-chapter="5" data-label="Cap. V">
 
@@ -337,8 +369,14 @@
             <span class="corner tr">❧</span>
             <span class="corner br">❧</span>
 
-            <div class="chapter">Capítulo V</div>
-            <div class="page-title" data-editable="page-title" contenteditable="true" data-placeholder="Insertar título de página"></div>
+            <div class="chapter"
+                 data-editable="chapter-5"
+                 contenteditable="true"
+                 data-placeholder="Capítulo V"></div>
+            <div class="page-title"
+                 data-editable="title-5"
+                 contenteditable="true"
+                 data-placeholder="Título del capítulo"></div>
             <div class="page-title-divider"></div>
 
             <div class="zone zone-text zone-top">
@@ -409,24 +447,34 @@
         </div>
 
       </section>
+
+
       <!-- ═══════════════════════════════════════════
-                        CONTRAPORTADA
-           ═══════════════════════════════════════════ -->
-      <section class="spread back-spread" data-spread="7" data-chapter="end" data-label="Contraportada">
+           CONTRAPORTADA
+      ═══════════════════════════════════════════ -->
+      <section class="spread back-spread"
+               data-spread="7" data-chapter="end" data-label="Contraportada">
         <div class="back-cover-page">
-          <div class="cover-ornament" data-editable="cover-ornament" contenteditable="true" data-placeholder="icon"></div>
-          <div class="cover-title back-cover-title" data-editable="cover-title" contenteditable="true" data-placeholder="Insertar título de portada"></div>
+          <div class="cover-ornament"
+               data-editable="back-ornament"
+               contenteditable="true"
+               data-placeholder="🌹"></div>
+          <div class="cover-title back-cover-title"
+               data-editable="back-title"
+               contenteditable="true"
+               data-placeholder="Título"></div>
           <div class="cover-divider"></div>
-          <div class="quote">
-            "Algunas historias no necesitan<br>
-              ser inventadas, solo contadas."
-          </div>
-          <div class="written-love" data-editable="writen-love" contenteditable="true" data-placeholder="inserta frase final"></div>
+          <div class="quote"
+               data-editable="back-quote"
+               contenteditable="true"
+               data-placeholder="Una frase para recordar…"></div>
+          <div class="written-love"
+               data-editable="back-written"
+               contenteditable="true"
+               data-placeholder="Escrito con amor ♡"></div>
           <div class="fin-stamp">Fin ✨</div>
         </div>
-      </section> 
-
-
+      </section>
 
     </div><!-- /pages-area -->
   </div><!-- /book -->
@@ -443,22 +491,16 @@
 
 <!-- ═══════════════════════════════════════════════════════════
      TEMPLATE DE SPREAD DINÁMICO
-     JS clona esto con document.getElementById('tpl-extra-spread')
-     .content.cloneNode(true) al agregar páginas extra.
-     Los data-id de textareas e imágenes se asignan en JS (UIDs únicos).
-     data-dynamic="true" identifica spreads generados en runtime.
 ═══════════════════════════════════════════════════════════════ -->
 <template id="tpl-extra-spread">
   <section class="spread spread-dynamic"
            data-spread="" data-chapter="" data-label="" data-dynamic="true">
 
-    <!-- Página izquierda -->
     <div class="page" data-page-side="left">
       <div class="page-inner">
         <span class="corner tl">❧</span>
         <span class="corner bl">❧</span>
 
-        <!-- Encabezado: etiqueta de capítulo + botón eliminar página -->
         <div class="dynamic-meta">
           <span class="dynamic-chapter-label"></span>
           <button class="btn-delete-spread" aria-label="Eliminar página">✕ eliminar página</button>
@@ -487,7 +529,6 @@
       </div>
     </div>
 
-    <!-- Página derecha -->
     <div class="page right" data-page-side="right">
       <div class="page-inner">
         <span class="corner tr">❧</span>

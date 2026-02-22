@@ -2,7 +2,7 @@
    BOOK.JS — estado del libro, navegación, spreads dinámicos
    ============================================================ */
 
-import { saveCurrentSpread, saveMobilePageSide, saveDynamicSpreads, getState } from './storage.js';
+import { saveCurrentSpread, saveMobilePageSide, saveDynamicSpreads } from './storage.js';
 
 /* ── Estado global ── */
 export const state = {
